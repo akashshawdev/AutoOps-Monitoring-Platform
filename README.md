@@ -4,7 +4,7 @@ A centralized DevOps monitoring dashboard that tracks real GitHub Actions CI/CD 
 
 **GitHub:** [akashshawdev/AutoOps-Monitoring-Platform](https://github.com/akashshawdev/AutoOps-Monitoring-Platform)
 
-**Live demo:** [autoops-monitoring-platform.vercel.app](https://autoops-monitoring-platform.vercel.app) | **API:** [autoops-monitoring-platform-api.onrender.com](https://autoops-monitoring-platform-api.onrender.com)
+**Live demo:** [autoops-monitoring-platform.vercel.app](https://autoops-monitoring-platform.vercel.app) | **API:** [autoops-monitoring-platform-api.up.railway.app](https://autoops-monitoring-platform-api.up.railway.app)
 
 ---
 
@@ -26,7 +26,7 @@ A centralized DevOps monitoring dashboard that tracks real GitHub Actions CI/CD 
 - **Backend:** Python, Flask, SQLite, psutil, Gunicorn
 - **Frontend:** React, Vite, TypeScript, Recharts
 - **CI/CD:** GitHub Actions
-- **Deploy:** Render (backend) + Vercel (frontend)
+- **Deploy:** Railway (backend) + Vercel (frontend)
 
 ---
 
@@ -37,7 +37,7 @@ AutoOps-Monitoring-Platform/
 ├── backend/
 │   ├── app.py                  # Flask entry point
 │   ├── requirements.txt
-│   ├── render.yaml             # Render deploy config
+│   ├── railway.toml            # Railway deploy config
 │   ├── routes/
 │   │   ├── pipelines.py        # /api/pipelines
 │   │   ├── health.py           # /api/health
@@ -116,22 +116,38 @@ npm run dev
 
 ## Deploy
 
-### Backend on Render
+### Backend on Railway
 
 1. Push repo to GitHub
-2. Create new **Web Service** on [render.com](https://render.com)
-3. Set root directory to `backend`
-4. Build command: `pip install -r requirements.txt`
-5. Start command: `gunicorn app:app --bind 0.0.0.0:$PORT`
-6. Add environment variables: `GITHUB_TOKEN`, `GITHUB_REPO`, `FRONTEND_URL`
+2. Go to [railway.app](https://railway.app) and create a new project
+3. Select **Deploy from GitHub repo** and pick `akashshawdev/AutoOps-Monitoring-Platform`
+4. Railway auto-detects the `backend/` folder via `railway.toml` and Nixpacks
+5. Set root directory to `backend` in the Railway service settings
+6. Add environment variables under the **Variables** tab:
+
+| Key | Value |
+|---|---|
+| `GITHUB_TOKEN` | Your GitHub PAT |
+| `GITHUB_REPO` | `akashshawdev/AutoOps-Monitoring-Platform` |
+| `FRONTEND_URL` | Your Vercel frontend URL (add after deploying frontend) |
+
+7. Railway auto-assigns a public URL like `https://autoops-monitoring-platform-api.up.railway.app`
 
 ### Frontend on Vercel
 
 ```bash
 cd frontend
-npx vercel
-# Set VITE_API_URL to your Render backend URL when prompted
+cp .env.example .env.production
+# Set VITE_API_URL to your Railway backend URL
+
+npx vercel --prod
 ```
+
+Or connect via the Vercel dashboard:
+1. Import the same GitHub repo
+2. Set **Root Directory** to `frontend`
+3. Add env var `VITE_API_URL=https://your-service.up.railway.app`
+4. Deploy
 
 ---
 
