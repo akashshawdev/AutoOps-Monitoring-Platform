@@ -160,3 +160,4 @@ Or connect via the Vercel dashboard:
 **Why poll instead of webhooks?** GitHub webhooks require a public URL and secret rotation. Polling the GitHub API every 30 seconds is simpler to demo and sufficient for a monitoring dashboard.
 
 **Page Object Model parallel:** The same separation of concerns used in the Firefox UI Automation Testing Suite (POM separates test logic from selectors) is applied here: services handle all external API logic, routes only handle HTTP concerns.
+Test push
