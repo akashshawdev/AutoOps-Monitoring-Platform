@@ -4,7 +4,7 @@ A centralized DevOps monitoring dashboard that tracks real GitHub Actions CI/CD 
 
 **GitHub:** [akashshawdev/AutoOps-Monitoring-Platform](https://github.com/akashshawdev/AutoOps-Monitoring-Platform)
 
-**Live demo:** [autoops-monitoring-platform.vercel.app](https://autoops-monitoring-platform.vercel.app) | **API:** [autoops-monitoring-platform-api.up.railway.app](https://autoops-monitoring-platform-api.up.railway.app)
+**Live demo:** [autoops-monitoring-platform.vercel.app](https://autoops-h1kaokvci-akash-s-projects22.vercel.app/) | **API:** [autoops-monitoring-platform-api.up.railway.app](https://autoops-monitoring-platform-api.up.railway.app)
 
 ---
 
