@@ -4,7 +4,7 @@ from services.log_service import init_db, ingest_failed_runs
 
 pipelines_bp = Blueprint("pipelines", __name__)
 
-# ensure DB exists on first import
+# make sure DB exists on first import
 init_db()
 
 
